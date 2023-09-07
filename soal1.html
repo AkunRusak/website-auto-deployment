@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jawaban Nomer 1</title>
+    <style type="text/css">
+        body{
+            background: #1cfda7;
+            align-items: center;
+        }
+        h2{
+            text-align: center;
+            color: #fff;
+        }
+        table [tr]{
+            text-align: center;
+        }
+        table{
+            background: aqua;
+            border-collapse: collapse;
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* table tr .center{
+            text-align: center;
+        } */
+        td:nth-child(2) {
+            text-align: center;
+        }
+        td:nth-child(3) {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tabel Mobil</h2>
+    <table border="1">
+        <tr>
+            <th>Tipe Mobil</th>
+            <th>Merk Mobil</th>
+            <th>Harga Mobil</th>
+        </tr>
+
+        <!-- Data mobil dalam bentuk array -->
+        <script>
+            var mobilData = [
+                ["Toyota New Kijang Inova", "Toyota", "Rp 150.000.000"],
+                ["Toyota New Vellfire", "Toyota", "Rp 200.000.000"],
+                ["Toyota", "Toyota", "Rp 250.000.000"],
+                ["BR-V", "Honda", "Rp 200.000.000"],
+                ["Civic Hatchback", "Honda", "Rp 215.000.000"]
+            ];
+
+            // <!-- Loop untuk menampilkan data dalam tabel -->
+            for (var i = 0; i < mobilData.length; i++) {
+                document.write("<tr>");
+                document.write("<td>" + mobilData[i][0] + "</td>");
+                document.write("<td>" + mobilData[i][1] + "</td>");
+                document.write("<td>" + mobilData[i][2] + "</td>");
+                document.write("</tr>");
+            }
+        </script>
+    </table>
+</body>
+</html>

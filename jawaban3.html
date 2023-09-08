@@ -1,10 +1,225 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jawaban Nomer 3</title>
+    <style type="text/css">
+        /* header */
+h2 {
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* form */
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+select{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+button {
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 40px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* hasil pembelian */
+#hasilPembelian {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+#hasilPembelian h3 {
+    color: #333;
+    text-align: center;
+}
+
+#hasilPembelian p {
+    color: #555;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* struk pembayaran */
+#strukPembayaran {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+#strukPembayaran h3 {
+    color: #333;
+    text-align: center;
+}
+
+#strukPembayaran pre {
+    color: #555;
+    white-space: pre-wrap;
+}
+    </style>
 </head>
 <body>
-    HELLO WORLD
+    <h2>Program Penjualan Rumah</h2>
+
+    <form id="rumahForm">
+        <label for="namaPembeli">Nama Pembeli:</label>
+        <input type="text" id="namaPembeli" required><br><br>
+
+        <label for="tipeRumah">Tipe Rumah:</label>
+        <select id="tipeRumah">
+            <option value="Mawar">Mawar</option>
+            <option value="Melati">Melati</option>
+            <option value="Dandelions">Dandelions</option>
+        </select><br><br>
+
+        <label>Lama Cicilan:</label>
+        <input type="radio" name="lamaCicilan" value="12"> 12 Bulan
+        <input type="radio" name="lamaCicilan" value="24"> 24 Bulan
+        <input type="radio" name="lamaCicilan" value="36"> 36 Bulan<br><br>
+
+        <button type="button" onclick="prosesPembelian()">Proses</button>
+        <button type="button" onclick="resetForm()">Ulang</button>
+    </form>
+
+    <div id="hasilPembelian" style="display: none;">
+        <h3>Data Rincian Biaya Kredit Rumah</h3>
+        <p>Nama Pembeli: <span id="rincianNamaPembeli"></span></p>
+        <p>Tipe Rumah: <span id="rincianTipeRumah"></span></p>
+            <!-- Data tabel akan ditambahkan melalui JavaScript -->
+        </table>
+    </div>
+
+    <script>
+        // Variabel untuk menyimpan data
+        var namaPembeli = "";
+        var tipeRumah = "";
+        var lamaCicilan = 0;
+        
+        function prosesPembelian() {
+            // Mendapatkan nilai input dari form
+            namaPembeli = document.getElementById("namaPembeli").value;
+            tipeRumah = document.getElementById("tipeRumah").value;
+            var cicilanRadioButton = document.querySelector('input[name="lamaCicilan"]:checked');
+
+            // Memeriksa apakah lamaCicilan telah dipilih
+            if (!cicilanRadioButton) {
+                alert("Silakan pilih lama cicilan.");
+                return;
+            }
+
+            lamaCicilan = parseInt(cicilanRadioButton.value);
+
+            // Menghitung total pembayaran
+            var hargaRumah = 0;
+            switch (tipeRumah) {
+                case "Mawar":
+                    hargaRumah = 300000000;
+                    break;
+                case "Melati":
+                    hargaRumah = 400000000;
+                    break;
+                case "Dandelions":
+                    hargaRumah = 500000000;
+                    break;
+            }
+
+            var uangMuka = hargaRumah * 0.2; // 20% dari harga rumah
+            var sisaPembayaran = hargaRumah - uangMuka;
+            var cicilanPerBulan = sisaPembayaran / lamaCicilan;
+
+            // Menampilkan hasil pembelian
+            var hasilPembelian = "Terima kasih, " + namaPembeli + " Anda telah membeli rumah tipe " + tipeRumah + ".<br>";
+            hasilPembelian += "Harga Rumah : Rp. " + hargaRumah.toFixed(2) + "<br>";
+            hasilPembelian += "Uang Muka : Rp. " + uangMuka.toFixed(2) + "<br>";
+            hasilPembelian += "Sisa Pembayaran : Rp. " + sisaPembayaran.toFixed(2) + "<br>";
+            hasilPembelian += "Cicilan per Bulan : Rp. " + cicilanPerBulan.toFixed(2) + "<br>";
+
+            document.getElementById("rincianNamaPembeli").textContent = namaPembeli;
+            document.getElementById("rincianTipeRumah").textContent = tipeRumah;
+
+            // Menampilkan hasil pembelian dengan tabel cicilan
+            var tabelCicilan = "<tr><th>Bulan</th><th>Cicilan Per Bulan</th><th>Sisa Angsuran</th></tr>";
+            for (var i = 1; i <= lamaCicilan; i++) {
+                sisaPembayaran -= cicilanPerBulan;
+                tabelCicilan += "<tr><td>" + i + "</td><td>Rp. " + cicilanPerBulan.toFixed(2) + "</td><td>Rp. " + sisaPembayaran.toFixed(2) + "</td></tr>";
+            }
+
+            document.getElementById("hasilPembelian").style.display = "block";
+            document.getElementById("hasilPembelian").innerHTML += hasilPembelian;
+            document.getElementById("hasilPembelian").innerHTML += "<table border='1'>" + tabelCicilan + "</table>";
+
+            alert("Data berhasil disimpan.");
+        }
+
+        function resetForm() {
+            // Mengatur ulang semua variabel ke nilai awal
+            namaPembeli = "";
+            tipeRumah = "";
+            lamaCicilan = 0;
+
+            // Mengatur ulang input dalam form
+            document.getElementById("namaPembeli").value = "";
+            document.getElementById("tipeRumah").selectedIndex = 0;
+            var cicilanRadios = document.querySelectorAll('input[name="lamaCicilan"]');
+            for (var i = 0; i < cicilanRadios.length; i++) {
+                cicilanRadios[i].checked = false;
+            }
+
+            // Mengatur ulang hasil pembelian
+            document.getElementById("hasilPembelian").style.display = "none";
+        }
+    </script>
 </body>
 </html>

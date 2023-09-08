@@ -139,6 +139,7 @@
   width: 100%;
   margin: 50px 0 100px;
   display: flex;
+  justify-content: center;
   gap: 100px;
 }
 
@@ -156,7 +157,8 @@
   margin-bottom: 60px;
 }
 a{
-text-decoration: none;}
+    text-decoration: none;
+}
 
 .uts-name {
   padding: 10px 20px;
@@ -170,6 +172,70 @@ text-decoration: none;}
 .uts-name:hover {
   color: #fff;
   background-color: #9f5264;
+}
+/* Styling untuk lebar > 700px */
+@media (min-width: 701px) {
+    .header {
+        padding: 0 10vw;
+    }
+
+    .header-img {
+        width: 300px;
+        height: 400px;
+    }
+
+    .circle {
+        width: 400px;
+        height: 400px;
+        margin-left: 20px;
+    }
+
+    .uts-container {
+        gap: 100px;
+    }
+}
+
+/* Styling untuk lebar <= 700px */
+@media (max-width: 700px) {
+    .nav {
+        flex-direction: column;
+        position: static;
+        background-color: transparent;
+        padding: 20px;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+
+    .header {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 20px 10vw;
+        text-align: center;
+    }
+
+    .header-img {
+        width: 250px;
+        height: auto;
+    }
+
+    .circle {
+        width: 300px;
+        height: 300px;
+        margin-left: 0;
+    }
+
+    .uts-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .uts-name {
+        padding: 10px 15px;
+    }
 }
 
     </style>

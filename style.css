@@ -262,7 +262,15 @@ header ul li:hover a
     color: #30fe6c;
 }
 
-
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000;
+    transform-style: preserve-3d;
+}
 .box
 {
     position: relative;
